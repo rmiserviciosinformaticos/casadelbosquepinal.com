@@ -1,0 +1,288 @@
+:root{
+  --color-principal:  #D9042B;
+  --color-secundario: #F2F2F2;
+  --color-terciario:  #0D0D0D; /* corregido */
+  --font-sans:        "Roboto";
+}
+
+/* Reset + base */
+*{ margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body{ font-family: var(--font-sans); background: var(--color-secundario); }
+li{ list-style: none; }
+a{ text-decoration: none; display: block; }
+img{ max-width: 100%; height: auto; display: block; }
+:focus-visible{ outline: 3px solid var(--color-principal); outline-offset: 2px; }
+
+/* NAV */
+.nav{
+  position: relative;            /* ancla el desplegable al nav */
+  z-index: 1000;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:1rem;
+  padding-inline:.5rem;
+}
+.nav__list{ display:flex; gap:.25rem; }
+
+.nav__link{ 
+    padding:.75rem 1rem; 
+    color:var(--color-principal); 
+    border-radius:.5rem; 
+    transition:background .2s,color .2s; }
+
+.nav__link:hover{ background: rgba(0,0,0,.08); }
+.nav__link.nav__link--active,
+.nav__link[aria-current="page"]{ color:var(--color-principal); position:relative; font-weight:600; }
+.nav__link.nav__link--active::after,
+.nav__link[aria-current="page"]::after{ content:""; position:absolute; left:10%; right:10%; bottom:.2rem; height:2px; border-radius:2px; background:var(--color-principal); }
+.nav__logo{ padding: 1rem 1rem; color: var(--color-principal); }
+
+/* FOOTER */
+.footer{ background:var(--color-terciario); color:var(--color-secundario); height:6rem; display:flex; justify-content:center; align-items:center; }
+
+/* HERO */
+.hero{
+  position:relative; isolation:isolate;
+  width:calc(100% - 2rem); min-height:min(60svh, 480px);
+  margin:0 1rem; padding:clamp(1rem, 2vw, 2rem);
+  border-radius:12px;
+  background-image:url('../img/cover-pinal.jpg');
+  background-repeat:no-repeat; background-position:center; background-size:cover;
+  display:flex; align-items:center;
+}
+.hero::before{ content:""; position:absolute; inset:0; border-radius:inherit; background:linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.35)); z-index:-1; }
+.hero__content{ max-width:64ch; color:var(--color-secundario); }
+.hero__title{ font-size:clamp(1.75rem, 2.5vw + 1rem, 3rem); line-height:1.1; font-weight:700; }
+.hero__subtitle{ font-size:clamp(1rem, 1.2vw + .8rem, 1.5rem); font-weight:400; opacity:.95; margin-top:.25rem; }
+.hero__cta{ display:inline-block; margin-top:1rem; background:var(--color-principal); color:var(--color-secundario);
+  border:none; padding:.875rem 1.25rem; border-radius:10px; font-weight:600; text-align:center; text-decoration:none;
+  box-shadow:0 1px 2px rgba(0,0,0,.15); transition: transform .12s, box-shadow .12s, background-color .12s; }
+.hero__cta:hover{ transform:translateY(-1px); box-shadow:0 6px 18px rgba(0,0,0,.22); }
+.hero__cta:active{ transform:translateY(0); box-shadow:0 2px 8px rgba(0,0,0,.18); }
+.hero__cta:focus-visible{ outline:3px solid var(--color-secundario); outline-offset:2px; }
+
+/* TITLES */
+.section-title{ text-align:center; font-size:clamp(1.5rem, 1.4vw + 1rem, 2.25rem); font-weight:700; margin-top:1.5rem; }
+.section-subtitle{ text-align:center; font-size:clamp(1rem, 1vw + .75rem, 1.25rem); opacity:.9; }
+
+/* Intro SEO */
+.intro.SEO{ max-width:72ch; margin:.75rem auto 0; padding:0 1rem; color:#2a2a2a; line-height:1.6; text-align:center; }
+.seo-keyword{ color:var(--color-principal); font-weight:500; }
+
+/* CARDS */
+.cards{ display:grid; gap:1rem; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); padding:1rem; }
+.card{ background:#fff; border-radius:12px; padding:1rem; box-shadow:0 2px 10px rgba(0,0,0,.06); transition: transform .12s, box-shadow .12s; }
+.card:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,.12); }
+.card__icon img{ width:56px; height:56px; display:block; margin-inline:auto; }
+.card__title{ text-align:center; margin:.75rem 0 .25rem; color:var(--color-principal); font-weight:600; }
+.card__text{ text-align:center; color:#333; opacity:.9; }
+
+/* ===== ICONOS ===== */
+/* Características: SIN pastilla, centrado */
+.feature__icon{ display:grid; place-items:center; width:auto; height:auto; margin-bottom:.75rem; background:transparent; border-radius:0; }
+.feature__icon img{ width:40px; height:40px; object-fit:contain; }
+
+/* Precios: CON pastilla roja (cápsula) */
+.price-card__icon{
+  display:grid; place-items:center;
+  width:56px; height:56px; border-radius:12px;
+  /* background: color-mix(in oklab, var(--color-principal) 92%, black 8%); */
+  margin-bottom:.75rem;
+}
+.price-card__icon img{ width:32px; height:32px; object-fit:contain; }
+
+/* GALLERY */
+.gallery{ padding:1.5rem 1rem; }
+.gallery__header{ text-align:center; margin-bottom:1rem; }
+.gallery__grid{ display:grid; gap:.75rem; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); }
+.gallery__item{ position:relative; display:block; padding:0; border:0; background:transparent; border-radius:12px; overflow:hidden; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,.12); transition: transform .12s, box-shadow .12s; }
+.gallery__item:focus-visible{ outline:3px solid var(--color-principal); outline-offset:2px; }
+.gallery__item:hover{ transform:translateY(-2px); box-shadow:0 8px 18px rgba(0,0,0,.18); }
+.gallery__thumb{ width:100%; aspect-ratio:4/3; object-fit:cover; transform:scale(1.002); }
+.gallery__lightbox{ border:none; padding:0; background:transparent; max-width:min(92vw,1100px); width:fit-content; }
+.gallery__lightbox::backdrop{ background:rgba(0,0,0,.75); }
+.gallery__full{ display:block; max-width:92vw; max-height:82svh; border-radius:12px; background:var(--color-terciario); }
+.gallery__close{ position:fixed; top:1rem; right:1rem; border:0; border-radius:999px; width:40px; height:40px; font-size:1.125rem; line-height:1; cursor:pointer; color:var(--color-secundario); background: color-mix(in oklab, var(--color-principal) 85%, black 15%); box-shadow:0 2px 10px rgba(0,0,0,.25); transition: transform .12s, box-shadow .12s, opacity .12s; }
+.gallery__close:hover{ transform:translateY(-1px); }
+.gallery__close:active{ transform:translateY(0); }
+
+/* FEATURES */
+.features{ padding:2rem 1rem; }
+.features__header{ text-align:center; margin-bottom:1rem; }
+.features__grid{ display:grid; gap:1rem; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); margin-bottom:1rem; }
+.feature{ background:#fff; border-radius:12px; padding:1rem; box-shadow:0 2px 10px rgba(0,0,0,.06); transition: transform .12s, box-shadow .12s; }
+.feature:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,.12); }
+.feature__title{ font-weight:700; margin-bottom:.25rem; color:var(--color-principal); }
+.feature__text{ color:#333; opacity:.9; }
+
+/* LOCATION (70%) */
+.location{ padding:2rem 1rem; }
+.location__header{ text-align:center; margin-bottom:1rem; }
+.location__map{ position:relative; width:70%; padding-bottom:39.375%; margin:0 auto 1rem; overflow:hidden; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,.1); }
+.location__map iframe{ position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
+.location__actions{ text-align:center; }
+.btn-map{ display:inline-block; background:var(--color-principal); color:var(--color-secundario); padding:.75rem 1.25rem; border-radius:8px; font-weight:600; text-decoration:none; transition: transform .12s, box-shadow .12s; }
+.btn-map:hover{ transform:translateY(-1px); box-shadow:0 6px 18px rgba(0,0,0,.2); }
+.btn-map:active{ transform:translateY(0); box-shadow:0 2px 8px rgba(0,0,0,.18); }
+
+/* En pantallas pequeñas el mapa al 100% */
+@media (max-width: 768px){
+  .location__map{ width:100%; padding-bottom:56.25%; }
+}
+
+/* PRICING */
+.pricing{ padding:2rem 1rem; }
+.pricing__header{ text-align:center; margin-bottom:1rem; }
+.pricing__grid{ display:grid; gap:1rem; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); }
+.price-card{ background:#fff; border-radius:12px; padding:1rem; box-shadow:0 2px 10px rgba(0,0,0,.06); transition: transform .12s, box-shadow .12s; }
+.price-card:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,.12); }
+.price-card__title{ font-weight:700; color:var(--color-principal); margin-bottom:.5rem; }
+.price-card__hint{ font-weight:500; color:#444; opacity:.9; font-size:.95rem; }
+.price-card__list{ display:grid; gap:.5rem; }
+.price-card__item{ display:flex; align-items:baseline; gap:.5rem; background:#fafafa; border:1px solid #eee; border-radius:.75rem; padding:.6rem .75rem; }
+.price-card__label{ flex:1 1 auto; color:#222; }
+.price-card__value{ color:var(--color-terciario); font-weight:800; }
+.price-card__unit{ color:#666; font-size:.9rem; }
+.price-card__bullet{ position:relative; padding-left:1.6rem; line-height:1.45; color:#222; }
+.price-card__bullet::before{ content:"✔"; position:absolute; left:0; top:.15rem; width:1.1rem; height:1.1rem; display:grid; place-items:center; font-size:.75rem; color:var(--color-secundario); background:var(--color-principal); border-radius:6px; }
+.pricing__note{ text-align:center; margin-top:1rem; font-style:italic; color:#4a4a4a; opacity:.9; }
+
+/* FAQ */
+.faq{ padding:2rem 1rem; }
+.faq__header{ text-align:center; margin-bottom:1rem; }
+.faq__item{ background:#fff; border:1px solid #eee; border-radius:12px; padding:.75rem 1rem; margin:.5rem auto; max-width:900px; box-shadow:0 1px 4px rgba(0,0,0,.04); }
+.faq__item[open]{ box-shadow:0 6px 18px rgba(0,0,0,.08); }
+.faq__q{ cursor:pointer; font-weight:600; color:var(--color-principal); list-style:none; }
+.faq__q::-webkit-details-marker{ display:none; }
+.faq__q::after{ content:"➜"; float:right; transition:transform .15s; }
+.faq__item[open] .faq__q::after{ transform:rotate(90deg); }
+.faq__a{ color:#333; opacity:.95; margin-top:.5rem; line-height:1.55; }
+
+/* WhatsApp FAB */
+.whatsapp-fab{
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  background: #25D366;            /* color WhatsApp */
+  box-shadow: 0 8px 22px rgba(0,0,0,.22);
+  display: grid;
+  place-items: center;
+  z-index: 999;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.whatsapp-fab i {
+  font-size: 28px;
+  color: white;
+}
+
+.whatsapp-fab:hover{ transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,.28); }
+
+/* .whatsapp-fab svg{ 
+    width: 28px; 
+    height: 28px; 
+    fill: white; } */
+
+/* Motion reduce */
+@media (prefers-reduced-motion: reduce){
+  .gallery__item, .gallery__close, .feature, .price-card, .whatsapp-fab { transition: none !important; }
+}
+
+/* ==== EQUIPAMIENTO Y AMENIDADES ==== */
+.features__details{
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.06);
+}
+
+.features__subtitle{
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--color-principal);
+  margin-bottom: 1rem;
+}
+
+.features__list{
+  display: grid;
+  gap: .75rem 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.features__item{
+  position: relative;
+  padding-left: 1.75rem;
+  line-height: 1.5;
+  color: #222;
+}
+
+.features__item::before{
+  content: "✔";
+  position: absolute;
+  left: 0;
+  top: 0.15rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  display: grid;
+  place-items: center;
+  font-size: .8rem;
+  color: var(--color-secundario);
+  background: var(--color-principal);
+  border-radius: 6px;
+}
+
+/* Versión móvil: lista en una sola columna */
+@media (max-width: 600px){
+  .features__list{
+    grid-template-columns: 1fr;
+  }
+}
+
+.nav__toggle{
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--color-principal);
+  cursor: pointer;
+}
+
+@media (max-width: 768px){
+  .nav__toggle{
+    display:block;               /* mostrar botón hamburguesa */
+  }
+
+  .nav__list{
+    /* oculto por defecto en móvil */
+    display:none;
+    flex-direction:column;
+    gap:0.5rem;
+
+    position:absolute;
+    top:100%;                    /* justo debajo del nav */
+    right:0;
+    left:auto;                   /* pegado a la derecha */
+    min-width:min(260px, 92vw);
+
+    background:#fff;
+    padding:1rem;
+    border-radius:0 0 12px 12px;
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+  }
+
+  /* visible cuando el JS agrega la clase */
+  .nav__list.is-open{
+    display:flex;
+  }
+}
+
+.nav__toggle i{
+  transition: transform .2s ease;
+}
