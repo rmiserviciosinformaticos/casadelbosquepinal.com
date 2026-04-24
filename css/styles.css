@@ -37,7 +37,7 @@ img{ max-width: 100%; height: auto; display: block; }
 .nav__link[aria-current="page"]{ color:var(--color-principal); position:relative; font-weight:600; }
 .nav__link.nav__link--active::after,
 .nav__link[aria-current="page"]::after{ content:""; position:absolute; left:10%; right:10%; bottom:.2rem; height:2px; border-radius:2px; background:var(--color-principal); }
-.nav__logo{ padding: 1rem 1rem; color: var(--color-principal); }
+.nav__logo{ padding: 1rem 1rem; color: var(--color-principal); font-size: 1.5rem; font-weight: 700; }
 
 /* FOOTER */
 .footer{ background:var(--color-terciario); color:var(--color-secundario); height:6rem; display:flex; justify-content:center; align-items:center; }
@@ -45,14 +45,14 @@ img{ max-width: 100%; height: auto; display: block; }
 /* HERO */
 .hero{
   position:relative; isolation:isolate;
-  width:calc(100% - 2rem); min-height:min(60svh, 480px);
-  margin:0 1rem; padding:clamp(1rem, 2vw, 2rem);
-  border-radius:12px;
+  width:100%; min-height:min(60svh, 480px);
+  margin:0; padding:clamp(1rem, 2vw, 2rem);
+  border-radius:0;
   background-image:url('../img/cover-pinal.jpg');
   background-repeat:no-repeat; background-position:center; background-size:cover;
   display:flex; align-items:center;
 }
-.hero::before{ content:""; position:absolute; inset:0; border-radius:inherit; background:linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.35)); z-index:-1; }
+.hero::before{ content:""; position:absolute; inset:0; background:linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.35)); z-index:-1; }
 .hero__content{ max-width:64ch; color:var(--color-secundario); }
 .hero__title{ font-size:clamp(1.75rem, 2.5vw + 1rem, 3rem); line-height:1.1; font-weight:700; }
 .hero__subtitle{ font-size:clamp(1rem, 1.2vw + .8rem, 1.5rem); font-weight:400; opacity:.95; margin-top:.25rem; }
@@ -64,7 +64,10 @@ img{ max-width: 100%; height: auto; display: block; }
 .hero__cta:focus-visible{ outline:3px solid var(--color-secundario); outline-offset:2px; }
 
 /* TITLES */
-.section-title{ text-align:center; font-size:clamp(1.5rem, 1.4vw + 1rem, 2.25rem); font-weight:700; margin-top:1.5rem; }
+.title{ padding:1.5rem 1rem 3rem; }
+.section-title{ text-align:center; font-size:clamp(1.5rem, 1.4vw + 1rem, 2.25rem); font-weight:700; margin-top:1.5rem; color:var(--color-principal); }
+.main{ padding:2rem 1rem; }
+
 .section-subtitle{ text-align:center; font-size:clamp(1rem, 1vw + .75rem, 1.25rem); opacity:.9; }
 
 /* Intro SEO */
