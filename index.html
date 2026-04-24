@@ -141,7 +141,8 @@
     </div>
 
     <section class="cards">
-      <article class="card">
+      <article class="card" role="button" tabindex="0"
+               data-detail="Nuestra cabaña tiene capacidad base para 8 personas y hasta 12 (4 extra con cargo). Contamos con 3 habitaciones, sofá cama y amplios espacios comunes para familias o grupos de amigos.">
         <div class="card__icon">
           <img src="img/icons/fotografo.svg" alt="Ícono de capacidad para huéspedes">
         </div>
@@ -149,7 +150,8 @@
         <p class="card__text">Ideal para familias y grupos, espacios amplios y cómodos.</p>
       </article>
 
-      <article class="card">
+      <article class="card" role="button" tabindex="0"
+               data-detail="Ubicada a solo 5 minutos en coche del centro de Pinal de Amoles. Cerca de restaurantes, miradores, cascadas y los principales atractivos de la Sierra Gorda.">
         <div class="card__icon">
           <img src="img/icons/mapa.svg" alt="Ícono de mapa / cercanía">
         </div>
@@ -157,7 +159,8 @@
         <p class="card__text">Cerca de servicios, miradores y atractivos de Pinal.</p>
       </article>
 
-      <article class="card">
+      <article class="card" role="button" tabindex="0"
+               data-detail="Aceptamos mascotas pequeñas y medianas con un cargo adicional. Avísanos al reservar para coordinar los detalles de tu estancia con ellas.">
         <div class="card__icon">
           <img src="img/icons/mascota.svg" alt="Ícono de mascota">
         </div>
@@ -165,7 +168,8 @@
         <p class="card__text">Aceptamos mascotas con cargo adicional.</p>
       </article>
 
-      <article class="card">
+      <article class="card" role="button" tabindex="0"
+               data-detail="Contamos con internet satelital Starlink de aproximadamente 150 Mb, ideal para trabajar de forma remota, videollamadas o ver contenido en streaming sin cortes.">
         <div class="card__icon">
           <img src="img/icons/acceso-rapido.svg" alt="Ícono de internet / acceso">
         </div>
@@ -173,6 +177,17 @@
         <p class="card__text">Starlink ~150 Mb para trabajar o entretenerte.</p>
       </article>
     </section>
+
+    <dialog class="card-modal" id="card-modal" aria-labelledby="card-modal-title">
+      <button class="card-modal__close" type="button" aria-label="Cerrar">✕</button>
+      <div class="card-modal__icon">
+        <img class="card-modal__img" src="" alt="">
+      </div>
+      <h3 class="card-modal__title" id="card-modal-title"></h3>
+      <p class="card-modal__text"></p>
+      <p class="card-modal__detail"></p>
+    </dialog>
+
   </main>
 
   <!-- Galería -->
@@ -210,6 +225,7 @@
       <p class="section-subtitle">Todo lo que necesitas para una estancia cómoda</p>
     </div>
 
+    <!--
     <div class="features__grid">
       <article class="feature">
         <div class="feature__icon">
@@ -243,6 +259,7 @@
         <p class="feature__text">Internet satelital Starlink ~150 Mb.</p>
       </article>
     </div>
+    -->
 
     <div class="features__details">
       <h3 class="features__subtitle">Equipamiento y amenidades</h3>

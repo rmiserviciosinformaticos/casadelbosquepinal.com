@@ -50,3 +50,40 @@ if (lightbox && fullImg && closeBtn) {
     fullImg.src = '';
   });
 }
+
+// Modal de cards (características)
+const cardModal = document.querySelector('#card-modal');
+if (cardModal) {
+  const mImg    = cardModal.querySelector('.card-modal__img');
+  const mTitle  = cardModal.querySelector('.card-modal__title');
+  const mText   = cardModal.querySelector('.card-modal__text');
+  const mDetail = cardModal.querySelector('.card-modal__detail');
+  const mClose  = cardModal.querySelector('.card-modal__close');
+
+  const openCardModal = (card) => {
+    const iconImg = card.querySelector('.card__icon img');
+    const title   = card.querySelector('.card__title');
+    const text    = card.querySelector('.card__text');
+    mImg.src    = iconImg ? iconImg.getAttribute('src') : '';
+    mImg.alt    = iconImg ? iconImg.getAttribute('alt') : '';
+    mTitle.textContent  = title ? title.textContent : '';
+    mText.textContent   = text ? text.textContent : '';
+    mDetail.textContent = card.getAttribute('data-detail') || '';
+    cardModal.showModal();
+  };
+
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', () => openCardModal(card));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openCardModal(card);
+      }
+    });
+  });
+
+  mClose.addEventListener('click', () => cardModal.close());
+  cardModal.addEventListener('click', (e) => {
+    if (e.target === cardModal) cardModal.close();
+  });
+}
