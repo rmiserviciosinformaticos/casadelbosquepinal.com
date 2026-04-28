@@ -25,6 +25,37 @@ img{ max-width: 100%; height: auto; display: block; }
 :focus-visible{ outline: 3px solid var(--color-principal); outline-offset: 2px; }
 
 /* NAV */
+/* Marquee superior */
+.marquee{
+  background: #ffeb00;
+  overflow: hidden;
+  width: 100%;
+  padding: .5rem 0;
+  border-bottom: 2px solid #d92d20;
+}
+.marquee__track{
+  display: inline-flex;
+  gap: 3rem;
+  white-space: nowrap;
+  padding-left: 100%;
+  animation: marquee-scroll 18s linear infinite;
+  will-change: transform;
+}
+.marquee__item{
+  color: #d92d20;
+  font-size: clamp(1.5rem, 4vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+@keyframes marquee-scroll{
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+@media (prefers-reduced-motion: reduce){
+  .marquee__track{ animation: none; padding-left: 0; }
+}
+
 .nav{
   position: relative;            /* ancla el desplegable al nav */
   z-index: 1000;
