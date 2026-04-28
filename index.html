@@ -117,7 +117,7 @@
       <a class="hero__cta"
          href="https://wa.me/524411097887?text=Hola%20me%20interesa%20reservar%20Casa%20del%20Bosque%20en%20Pinal%20de%20Amoles.%20Fechas%3A%20%5Bindica%20tu%20fecha%5D.%20Huespedes%3A%20%5Bnum%5D.%20%C2%BFDisponibilidad%20y%20costo%2C%20por%20favor%3F"
          target="_blank" rel="noopener noreferrer"
-         aria-label="Reservar estancia por WhatsApp" data-gtag="whatsapp-cta">Reserva</a>
+         aria-label="Reservar estancia" data-gtag="reserva-modal-open" data-reserva-trigger>Reserva</a>
     </div>
   </section>
 
@@ -448,17 +448,82 @@
 <a class="whatsapp-fab"
    href="https://wa.me/524411097887?text=Hola%2C%20me%20gustar%C3%ADa%20informaci%C3%B3n%20para%20reservar%20Casa%20del%20Bosque%20(Fechas%2C%20n%C3%BAmero%20de%20hu%C3%A9spedes%2C%20costos)."
    target="_blank" rel="noopener noreferrer"
-   aria-label="Chatear por WhatsApp" title="Chatear por WhatsApp">
+   aria-label="Reservar por WhatsApp" title="Reservar por WhatsApp" data-gtag="whatsapp-fab" data-reserva-trigger>
    <i class="fa-brands fa-whatsapp"></i>
 </a>
 
 
+  <!-- Modal de reserva -->
+  <dialog class="reserva-modal" id="reserva-modal" aria-labelledby="reserva-modal-title">
+    <header class="reserva-modal__header">
+      <button class="reserva-modal__close" type="button" aria-label="Cerrar">✕</button>
+      <h3 class="reserva-modal__title" id="reserva-modal-title">
+        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+        Reservar Casa del Bosque
+      </h3>
+      <p class="reserva-modal__subtitle">Completa tus datos y continúa por WhatsApp</p>
+    </header>
+
+    <form class="reserva-form" id="reserva-form" novalidate>
+      <div class="reserva-form__row">
+        <label class="reserva-form__field">
+          <span class="reserva-form__label">Entrada</span>
+          <input type="date" name="entrada" required>
+        </label>
+        <label class="reserva-form__field">
+          <span class="reserva-form__label">Salida</span>
+          <input type="date" name="salida" required>
+        </label>
+      </div>
+
+      <div class="reserva-form__row">
+        <label class="reserva-form__field">
+          <span class="reserva-form__label">Huéspedes</span>
+          <select name="huespedes" required>
+            <option value="" disabled selected>Selecciona</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9 (con cargo)</option>
+            <option value="10">10 (con cargo)</option>
+            <option value="11">11 (con cargo)</option>
+            <option value="12">12 (con cargo)</option>
+          </select>
+        </label>
+        <label class="reserva-form__field">
+          <span class="reserva-form__label">¿Mascotas?</span>
+          <select name="mascotas">
+            <option value="no" selected>No</option>
+            <option value="si">Sí (con cargo)</option>
+          </select>
+        </label>
+      </div>
+
+      <label class="reserva-form__field reserva-form__field--full">
+        <span class="reserva-form__label">Comentario (opcional)</span>
+        <textarea name="comentario" rows="2" placeholder="Algo que quieras mencionar..."></textarea>
+      </label>
+
+      <p class="reserva-form__error" id="reserva-form-error" role="alert" aria-live="polite"></p>
+
+      <button type="submit" class="reserva-form__submit">
+        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+        Continuar por WhatsApp
+      </button>
+    </form>
+  </dialog>
+
   <!-- JS -->
   <script src="js/script.js"></script>
 
-  <!-- (Opcional) Tracking de clics de WhatsApp si tienes GA4 activo -->
+  <!-- Tracking GA4: cualquier elemento con data-gtag dispara un evento click -->
   <script>
-    document.querySelectorAll('[data-gtag^="whatsapp"]').forEach(el=>{
+    document.querySelectorAll('[data-gtag]').forEach(el=>{
       el.addEventListener('click', ()=> {
         if (typeof gtag === 'function') {
           gtag('event', 'click', { event_category: 'engagement', event_label: el.getAttribute('data-gtag') });

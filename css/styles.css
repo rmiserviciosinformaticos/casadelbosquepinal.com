@@ -8,6 +8,12 @@
   --color-secundario: #F2F2F2;
   --color-terciario:  #0D0D0D;
   --font-sans:        "Roboto";
+
+  /* WhatsApp brand */
+  --wa-green:   #25D366;  /* verde clásico (botones, FAB) */
+  --wa-dark:    #128C7E;  /* verde oscuro (acentos) */
+  --wa-darker:  #075E54;  /* verde más oscuro (header) */
+  --wa-bg:      #ECE5DD;  /* beige del fondo de chat */
 }
 
 /* Base */
@@ -208,7 +214,7 @@ img{ max-width: 100%; height: auto; display: block; }
   width: 56px;
   height: 56px;
   border-radius: 999px;
-  background: #25D366;            /* color WhatsApp */
+  background: var(--wa-green);    /* color WhatsApp */
   box-shadow: 0 8px 22px rgba(0,0,0,.22);
   display: grid;
   place-items: center;
@@ -278,6 +284,42 @@ img{ max-width: 100%; height: auto; display: block; }
   .features__list{
     grid-template-columns: 1fr;
   }
+}
+
+/* Modal de reserva — tema WhatsApp */
+.reserva-modal{ position:relative; border:none; padding:0; background:#fff; border-radius:16px; max-width:min(94vw, 520px); width:100%; height:fit-content; inset:0; margin:auto; box-shadow:0 20px 50px rgba(0,0,0,.3); color:#2a2a2a; overflow:hidden; }
+.reserva-modal::backdrop{ background:rgba(7,94,84,.35); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); }
+
+.reserva-modal__header{ position:relative; background:var(--wa-darker); color:#fff; padding:1.25rem 1.25rem 1rem; }
+.reserva-modal__close{ position:absolute; top:.6rem; right:.6rem; width:34px; height:34px; border:0; border-radius:999px; background:rgba(255,255,255,.18); color:#fff; font-size:1rem; cursor:pointer; transition:background .15s; }
+.reserva-modal__close:hover{ background:rgba(255,255,255,.3); }
+.reserva-modal__title{ display:flex; align-items:center; gap:.55rem; color:#fff; font-size:1.2rem; font-weight:700; margin:0; padding-right:2.5rem; }
+.reserva-modal__title i{ color:var(--wa-green); font-size:1.5rem; }
+.reserva-modal__subtitle{ font-size:.875rem; color:rgba(255,255,255,.85); margin:.35rem 0 0; padding-right:2.5rem; }
+
+.reserva-form{ display:grid; gap:.85rem; padding:1.5rem 1.25rem 1.25rem; background:#fff; }
+.reserva-form__row{ display:grid; grid-template-columns:1fr 1fr; gap:.75rem; }
+.reserva-form__field{ display:grid; gap:.3rem; }
+.reserva-form__field--full{ grid-column:1 / -1; }
+.reserva-form__label{ font-size:.85rem; font-weight:600; color:#333; }
+.reserva-form__field input,
+.reserva-form__field select,
+.reserva-form__field textarea{ width:100%; padding:.6rem .75rem; border:1px solid #ddd; border-radius:8px; font:inherit; color:#222; background:#fafafa; transition:border-color .15s, background .15s, box-shadow .15s; }
+.reserva-form__field input:focus,
+.reserva-form__field select:focus,
+.reserva-form__field textarea:focus{ outline:none; border-color:var(--wa-dark); background:#fff; box-shadow:0 0 0 3px rgba(37,211,102,.18); }
+.reserva-form__field textarea{ resize:vertical; min-height:60px; }
+.reserva-form__error{ min-height:1.2em; color:var(--color-principal); font-size:.85rem; font-weight:500; text-align:center; margin:0; }
+.reserva-form__submit{ display:inline-flex; align-items:center; justify-content:center; gap:.55rem; margin-top:.25rem; background:var(--wa-green); color:#fff; border:none; padding:.85rem 1.5rem; border-radius:10px; font:inherit; font-weight:600; font-size:1.05rem; cursor:pointer; box-shadow:0 2px 8px rgba(37,211,102,.35); transition: transform .12s, box-shadow .12s, background-color .15s; }
+.reserva-form__submit i{ font-size:1.25rem; }
+.reserva-form__submit:hover{ background:#1ebe57; transform:translateY(-1px); box-shadow:0 8px 20px rgba(37,211,102,.4); }
+.reserva-form__submit:active{ transform:translateY(0); box-shadow:0 2px 8px rgba(37,211,102,.3); }
+.reserva-form__submit:focus-visible{ outline:3px solid var(--wa-dark); outline-offset:2px; }
+
+@media (max-width:480px){
+  .reserva-form__row{ grid-template-columns:1fr; }
+  .reserva-form{ padding:1.25rem 1rem 1rem; }
+  .reserva-modal__header{ padding:1.1rem 1rem .9rem; }
 }
 
 .nav__toggle{

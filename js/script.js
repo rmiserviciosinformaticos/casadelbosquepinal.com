@@ -169,6 +169,101 @@ if (slider && prevBtn && nextBtn) {
   nextBtn.addEventListener('click', () => animateScrollBy( getStep()));
 }
 
+// Modal de reserva (botón "Reserva" del hero y FAB de WhatsApp)
+const reservaModal    = document.querySelector('#reserva-modal');
+const reservaTriggers = document.querySelectorAll('[data-reserva-trigger]');
+const reservaForm     = document.querySelector('#reserva-form');
+
+if (reservaModal && reservaTriggers.length && reservaForm) {
+  const closeBtn  = reservaModal.querySelector('.reserva-modal__close');
+  const errorEl   = reservaForm.querySelector('#reserva-form-error');
+  const entradaEl = reservaForm.querySelector('[name="entrada"]');
+  const salidaEl  = reservaForm.querySelector('[name="salida"]');
+
+  const todayISO = () => new Date().toISOString().slice(0, 10);
+  const addDays  = (iso, n) => {
+    const d = new Date(iso);
+    d.setDate(d.getDate() + n);
+    return d.toISOString().slice(0, 10);
+  };
+  const fmtDate = (iso) => {
+    const [y, m, d] = iso.split('-');
+    return `${d}/${m}/${y}`;
+  };
+  const setError = (msg) => { errorEl.textContent = msg || ''; };
+
+  reservaTriggers.forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      setError('');
+      entradaEl.min = todayISO();
+      salidaEl.min  = addDays(todayISO(), 1);
+      reservaModal.showModal();
+    });
+  });
+
+  // Al elegir entrada, ajustar el mínimo de salida
+  entradaEl.addEventListener('change', () => {
+    if (!entradaEl.value) return;
+    salidaEl.min = addDays(entradaEl.value, 1);
+    if (salidaEl.value && salidaEl.value <= entradaEl.value) {
+      salidaEl.value = '';
+    }
+  });
+
+  closeBtn.addEventListener('click', () => reservaModal.close());
+  reservaModal.addEventListener('click', (e) => {
+    if (e.target === reservaModal) reservaModal.close();
+  });
+  reservaModal.addEventListener('close', () => {
+    reservaForm.reset();
+    setError('');
+  });
+
+  reservaForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const data       = new FormData(reservaForm);
+    const entrada    = data.get('entrada');
+    const salida     = data.get('salida');
+    const huespedes  = data.get('huespedes');
+    const mascotas   = data.get('mascotas');
+    const comentario = (data.get('comentario') || '').trim();
+
+    if (!entrada || !salida)            return setError('Selecciona fecha de entrada y salida.');
+    if (salida <= entrada)              return setError('La fecha de salida debe ser posterior a la de entrada.');
+    if (!huespedes)                     return setError('Indica el número de huéspedes.');
+
+    const noches = Math.round((new Date(salida) - new Date(entrada)) / 86400000);
+
+    const lines = [
+      'Hola, me interesa reservar Casa del Bosque en Pinal de Amoles.',
+      '',
+      `📅 Entrada: ${fmtDate(entrada)}`,
+      `📅 Salida: ${fmtDate(salida)} (${noches} ${noches === 1 ? 'noche' : 'noches'})`,
+      `👥 Huéspedes: ${huespedes}`,
+      `🐾 Mascotas: ${mascotas === 'si' ? 'Sí' : 'No'}`,
+    ];
+    if (comentario) lines.push(`💬 Comentario: ${comentario}`);
+    lines.push('', '¿Disponibilidad y costo, por favor?');
+
+    const url = `https://wa.me/524411097887?text=${encodeURIComponent(lines.join('\n'))}`;
+
+    if (typeof gtag === 'function') {
+      gtag('event', 'click', {
+        event_category: 'engagement',
+        event_label: 'reserva-submit',
+        noches,
+        huespedes: Number(huespedes),
+        mascotas,
+      });
+    }
+
+    window.open(url, '_blank', 'noopener,noreferrer');
+    reservaModal.close();
+  });
+}
+
 // Año dinámico en el footer
 const yearEl = document.getElementById('footer-year');
 if (yearEl) yearEl.textContent = String(new Date().getFullYear());
