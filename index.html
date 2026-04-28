@@ -190,34 +190,6 @@
 
   </main>
 
-  <!-- Galería -->
-  <section class="gallery" id="galeria" aria-labelledby="galeria-titulo">
-    <div class="gallery__header">
-      <h2 id="galeria-titulo" class="section-title">Galería</h2>
-      <p class="section-subtitle">Conoce la cabaña y sus alrededores</p>
-    </div>
-
-    <div class="gallery__grid">
-      <button class="gallery__item" type="button" data-full="img/cabana.jpg" aria-label="Vista de la cabaña 1">
-        <img class="gallery__thumb" src="img/cabana.jpg" alt="Vista de la cabaña" loading="lazy" width="960" height="720">
-      </button>
-      <button class="gallery__item" type="button" data-full="img/17.png" aria-label="Vista de la cabaña 2">
-        <img class="gallery__thumb" src="img/17.png" alt="Vista de la cabaña" loading="lazy" width="960" height="720">
-      </button>
-      <button class="gallery__item" type="button" data-full="img/5.jpg" aria-label="Vista de la cabaña 3">
-        <img class="gallery__thumb" src="img/5.jpg" alt="Vista de la cabaña" loading="lazy" width="960" height="720">
-      </button>
-      <button class="gallery__item" type="button" data-full="img/16.png" aria-label="Vista de la cabaña 4">
-        <img class="gallery__thumb" src="img/16.png" alt="Vista de la cabaña" loading="lazy" width="960" height="720">
-      </button>
-    </div>
-
-    <dialog class="gallery__lightbox" id="lightbox" aria-label="Visor de imágenes">
-      <img class="gallery__full" alt="">
-      <button class="gallery__close" type="button" aria-label="Cerrar">✕</button>
-    </dialog>
-  </section>
-
   <!-- Características (detalle) -->
   <section class="features" aria-labelledby="features-title">
     <div class="features__header">
@@ -264,17 +236,64 @@
     <div class="features__details">
       <h3 class="features__subtitle">Equipamiento y amenidades</h3>
       <ul class="features__list">
-        <li class="features__item">3 habitaciones + sofá cama</li>
-        <li class="features__item">Sala con chimenea y comedor</li>
-        <li class="features__item">TV con Sky, Netflix y Disney+</li>
-        <li class="features__item">2 baños completos con agua caliente</li>
+        <li class="features__item">3 habitaciones + 1 estudio con sofá cama</li>
+        <li class="features__item">Sala con chimenea</li>
+        <li class="features__item">TV con Sky y Netflix</li>
         <li class="features__item">Cocina equipada: estufa, refrigerador, utensilios</li>
+        <li class="features__item">2 baños completos con agua caliente</li>
         <li class="features__item">Terraza con asador</li>
         <li class="features__item">Estacionamiento para varios vehículos</li>
         <li class="features__item">Espacio 100% privado (no se comparte)</li>
         <li class="features__item">Clima fresco y vistas panorámicas</li>
       </ul>
     </div>
+  </section>
+
+  <!-- Galería -->
+  <section class="gallery" id="galeria" aria-labelledby="galeria-titulo">
+    <div class="gallery__header">
+      <h2 id="galeria-titulo" class="section-title">Galería</h2>
+      <p class="section-subtitle">Conoce la cabaña y sus alrededores</p>
+    </div>
+
+    <div class="gallery__slider">
+      <button class="gallery__nav gallery__nav--prev" type="button" aria-label="Imagen anterior">
+        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+      </button>
+
+      <div class="gallery__grid">
+        <button class="gallery__item" type="button" data-full="img/cabana.jpg" aria-label="Vista de la cabaña 1">
+          <img class="gallery__thumb" src="img/cabana.jpg" alt="Vista de la cabaña" loading="lazy" width="960" height="720">
+        </button>
+        <button class="gallery__item" type="button" data-full="img/17.png" aria-label="Vista de la cabaña 2">
+          <img class="gallery__thumb" src="img/17.png" alt="Vista de la cabaña" loading="lazy" width="960" height="720">
+        </button>
+        <button class="gallery__item" type="button" data-full="img/5.jpg" aria-label="Vista de la cabaña 3">
+          <img class="gallery__thumb" src="img/5.jpg" alt="Vista de la cabaña" loading="lazy" width="960" height="720">
+        </button>
+        <button class="gallery__item" type="button" data-full="img/16.png" aria-label="Vista de la cabaña 4">
+          <img class="gallery__thumb" src="img/16.png" alt="Vista de la cabaña" loading="lazy" width="960" height="720">
+        </button>
+      </div>
+
+      <button class="gallery__nav gallery__nav--next" type="button" aria-label="Imagen siguiente">
+        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <dialog class="gallery__lightbox" id="lightbox" aria-label="Visor de imágenes">
+      <div class="lightbox__stage">
+        <img class="gallery__full" alt="">
+        <img class="gallery__full" alt="">
+      </div>
+      <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Imagen anterior">
+        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+      </button>
+      <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Imagen siguiente">
+        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+      </button>
+      <button class="gallery__close" type="button" aria-label="Cerrar">✕</button>
+    </dialog>
   </section>
 
   <!-- Ubicación -->
@@ -389,7 +408,39 @@
   </section>
 
   <footer class="footer">
-    <p class="footer__note">Powered by RMI</p>
+    <div class="footer__grid">
+      <div class="footer__col">
+        <h3 class="footer__title">Contacto</h3>
+        <ul class="footer__list">
+          <li><a href="https://wa.me/524411097887" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>441 109 7887</a></li>
+          <li><a href="mailto:casadelbosquepinal@gmail.com"><i class="fa-regular fa-envelope" aria-hidden="true"></i>casadelbosquepinal@gmail.com</a></li>
+          <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Pinal de Amoles, Querétaro</li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h3 class="footer__title">Síguenos</h3>
+        <div class="footer__social">
+          <a href="https://instagram.com/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+          <a href="https://facebook.com/" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div class="footer__col">
+        <h3 class="footer__title">Enlaces</h3>
+        <ul class="footer__list">
+          <li><a href="#caracteristicas">Características</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#precio">Precios</a></li>
+          <li><a href="#ubicacion">Ubicación</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__note">© <span id="footer-year">2026</span> Casa del Bosque · Pinal de Amoles · Desarrollado por RMI-SERVICIOS INFORMATICOS</p>
+    </div>
   </footer>
 
   <!-- Botón flotante de WhatsApp -->
