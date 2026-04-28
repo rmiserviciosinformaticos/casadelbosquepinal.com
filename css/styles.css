@@ -287,7 +287,8 @@ img{ max-width: 100%; height: auto; display: block; }
 }
 
 /* Modal de reserva — tema WhatsApp */
-.reserva-modal{ position:relative; border:none; padding:0; background:#fff; border-radius:16px; max-width:min(94vw, 520px); width:100%; height:fit-content; inset:0; margin:auto; box-shadow:0 20px 50px rgba(0,0,0,.3); color:#2a2a2a; overflow:hidden; }
+.reserva-modal{ position:relative; border:none; padding:0; background:#fff; border-radius:16px; max-width:min(94vw, 520px); width:100%; max-height:92svh; inset:0; margin:auto; box-shadow:0 20px 50px rgba(0,0,0,.3); color:#2a2a2a; overflow:hidden; flex-direction:column; }
+.reserva-modal[open]{ display:flex; }
 .reserva-modal::backdrop{ background:rgba(7,94,84,.35); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); }
 
 .reserva-modal__header{ position:relative; background:var(--wa-darker); color:#fff; padding:1.25rem 1.25rem 1rem; }
@@ -297,7 +298,7 @@ img{ max-width: 100%; height: auto; display: block; }
 .reserva-modal__title i{ color:var(--wa-green); font-size:1.5rem; }
 .reserva-modal__subtitle{ font-size:.875rem; color:rgba(255,255,255,.85); margin:.35rem 0 0; padding-right:2.5rem; }
 
-.reserva-form{ display:grid; gap:.85rem; padding:1.5rem 1.25rem 1.25rem; background:#fff; }
+.reserva-form{ display:grid; gap:.85rem; padding:1.5rem 1.25rem 1.25rem; background:#fff; overflow-y:auto; min-height:0; }
 .reserva-form__row{ display:grid; grid-template-columns:1fr 1fr; gap:.75rem; }
 .reserva-form__field{ display:grid; gap:.3rem; }
 .reserva-form__field--full{ grid-column:1 / -1; }
@@ -317,9 +318,16 @@ img{ max-width: 100%; height: auto; display: block; }
 .reserva-form__submit:focus-visible{ outline:3px solid var(--wa-dark); outline-offset:2px; }
 
 @media (max-width:480px){
-  .reserva-form__row{ grid-template-columns:1fr; }
-  .reserva-form{ padding:1.25rem 1rem 1rem; }
-  .reserva-modal__header{ padding:1.1rem 1rem .9rem; }
+  .reserva-form{ padding:1rem 1rem .9rem; gap:.6rem; }
+  .reserva-modal__header{ padding:.9rem 1rem .75rem; }
+  .reserva-modal__title{ font-size:1.05rem; }
+  .reserva-modal__subtitle{ font-size:.8rem; }
+  .reserva-form__row{ gap:.6rem; }
+  .reserva-form__field input,
+  .reserva-form__field select,
+  .reserva-form__field textarea{ padding:.5rem .65rem; }
+  .reserva-form__field textarea{ min-height:48px; }
+  .reserva-form__submit{ padding:.7rem 1.25rem; font-size:1rem; }
 }
 
 .nav__toggle{
